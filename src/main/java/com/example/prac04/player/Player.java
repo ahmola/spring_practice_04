@@ -1,6 +1,8 @@
 package com.example.prac04.player;
 
+import com.example.prac04.config.ObjectIdSerializer;
 import com.example.prac04.user.User;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,8 +18,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Player {
 
+    @JsonSerialize(using = ObjectIdSerializer.class)
     @Id
     private ObjectId id;
+
+    private String videoId;
 
     private String title;
 
@@ -28,6 +33,7 @@ public class Player {
     private ObjectId userId;
 
     public Player(PlayerDTO playerDTO){
+        this.videoId = playerDTO.getVideoId();
         this.title = playerDTO.getTitle();
         this.artist = playerDTO.getArtist();
         this.url = playerDTO.getUrl();

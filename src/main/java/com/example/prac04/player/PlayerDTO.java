@@ -13,6 +13,8 @@ public class PlayerDTO {
 
     private String id;
 
+    private String videoId;
+
     private String title;
 
     private String artist;

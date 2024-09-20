@@ -28,7 +28,7 @@ public class PlayerService {
 
     public Mono<Player> addPlayer(PlayerDTO playerDTO) {
         Player player = new Player(playerDTO);
-        if(!playerDTO.getUserId().isEmpty()) {
+        if(playerDTO.getUserId() != null) {
             try {
                 userRepository.findById(stringToObjectId.convert(playerDTO.getUserId())).subscribe(user -> {
                     player.setUserId(user.getId());
